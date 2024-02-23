@@ -1,0 +1,22 @@
+.todoInputWrapper {
+  margin-top: 20px;
+  .todoInput {
+    min-width: 500px;
+    height: 30px;
+    border-radius: 8px;
+    border: unset;
+    outline:none;
+    font-size: 20px;
+    padding: 5px 10px;
+  }
+
+  .todoAddBtn{
+    height: 100%;
+    width: 100px;
+    margin-left: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    box-shadow: none;
+    border: none;
+  }
+}

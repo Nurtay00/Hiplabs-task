@@ -1,0 +1,12 @@
+.filterWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  .active{
+    color: blue;
+  }
+}

@@ -1,0 +1,11 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(52, 58, 70, .8);
+    height: 100vh;
+    padding: 60px;
+    font-size: 30px;
+    color: white;
+    overflow-y: hidden;
+}
