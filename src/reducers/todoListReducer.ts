@@ -4,7 +4,6 @@ import {ActionInterface, ToDoInteface} from "../interfaces/todoInterface";
 
 const initalToDo: ToDoInteface[] = []
 
-
 export const todoListReducer = (state: ToDoInteface[] = initalToDo, action: ActionInterface<any>) => {
     const {payload} = action
     switch (action.type) {
@@ -14,7 +13,8 @@ export const todoListReducer = (state: ToDoInteface[] = initalToDo, action: Acti
             return state.map((el) => el.id === payload.id ? payload : el)
 
         case DELETE_ITEM:
-            return state.filter((el) => el.id !== payload)
+            console.log(payload,'payload')
+            return state.filter((el) => el.id !== payload.id)
 
         case LIST_LOAD:
             return [...payload]

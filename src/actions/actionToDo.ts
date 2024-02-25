@@ -8,89 +8,29 @@ import {
 } from "../types/todoTypes";
 import {todoService} from "../services/todo.service";
 import dataJson from '../exapleData.json'
-import { Dispatch} from "redux";
+import {Dispatch} from "redux";
+import {ToDoInteface} from "../interfaces/todoInterface";
 
 
-export const addTodo = (text: any, status: string, id: string): any => {
-    return async (dispatch:Dispatch<any>) => {
-        try {
-            dispatch(loaderOn());
-            // await todoService.postTodoItem({text, status, id})
-            setTimeout(() => {
-                dispatch({
-                    type: ADD_TODO,
-                    payload: {text, status, id}
-                });
-                dispatch(loaderOff());
-            }, 2000);
-        } catch (err) {
-            dispatch(errorOn('Ошибка API'));
-            dispatch(loaderOff());
-        }
-    }
-
-
-}
-
-export function changeItem(text: string, status: string, id: string): any {
-    return async (dispatch: Dispatch<any>) => {
-        try {
-            dispatch(loaderOn());
-            // await todoService.putTodoItem({text, status, id})
-            setTimeout(() => {
-                dispatch({
-                    type: CHANGE_ITEM_STATUS,
-                    payload: {text, status, id}
-                });
-                dispatch(loaderOff());
-            }, 2000);
-        } catch (err) {
-            dispatch(errorOn('Ошибка API'));
-            dispatch(loaderOff());
-        }
-    }
-}
-
-export function deleteItem(id: string): any {
-    return async (dispatch: Dispatch<any>) => {
-        try {
-            dispatch(loaderOn());
-            // await todoService.deleteTodoItem( id )
-            setTimeout(() => {
-                dispatch({
-                    type: DELETE_ITEM,
-                    payload: id
-                });
-                dispatch(loaderOff());
-            }, 2000);
-        } catch (err) {
-            dispatch(errorOn('Ошибка API'));
-            dispatch(loaderOff());
-        }
-    }
-
-
-}
-
-export function loaderOn() {
+export const loaderOn = () => {
     return {
         type: LOADER_DISPLAY_ON
     }
 }
 
-export function loaderOff() {
+export const loaderOff = () => {
     return {
         type: LOADER_DISPLAY_OFF
     }
 }
 
-export function errorOff() {
+export const errorOff = () => {
     return {
         type: ERROR_DISPLAY_OFF,
     }
 }
 
-export function errorOn(text: string) {
+export const errorOn = (text: string) => {
     return (dispatch: Dispatch) => {
         dispatch({
             type: ERROR_DISPLAY_ON,
@@ -103,7 +43,7 @@ export function errorOn(text: string) {
     }
 }
 
-export function listLoad(): any {
+export const listLoad = () => {
     return async (dispatch: Dispatch<any>) => {
         try {
             dispatch(loaderOn());
@@ -116,6 +56,66 @@ export function listLoad(): any {
                 });
                 dispatch(loaderOff());
             }, 3000);
+        } catch (err) {
+            dispatch(errorOn('Ошибка API'));
+            dispatch(loaderOff());
+        }
+    }
+}
+
+
+export const addTodo = (data: ToDoInteface) => {
+    return async (dispatch: Dispatch<any>) => {
+        try {
+            dispatch(loaderOn());
+            // await todoService.postTodoItem({text, status, id})
+            setTimeout(() => {
+                dispatch({
+                    type: ADD_TODO,
+                    payload: data
+                });
+                dispatch(loaderOff());
+            }, 2000);
+        } catch (err) {
+            dispatch(errorOn('Ошибка API'));
+            dispatch(loaderOff());
+        }
+    }
+
+
+}
+
+export const changeItem = (data: ToDoInteface) => {
+    return async (dispatch: Dispatch<any>) => {
+        try {
+            dispatch(loaderOn());
+            // await todoService.putTodoItem({text, status, id})
+            setTimeout(() => {
+                dispatch({
+                    type: CHANGE_ITEM_STATUS,
+                    payload: data
+                });
+                dispatch(loaderOff());
+            }, 2000);
+        } catch (err) {
+            dispatch(errorOn('Ошибка API'));
+            dispatch(loaderOff());
+        }
+    }
+}
+
+export const deleteItem = (data: ToDoInteface) => {
+    return async (dispatch: Dispatch<any>) => {
+        try {
+            dispatch(loaderOn());
+            // await todoService.deleteTodoItem( id )
+            setTimeout(() => {
+                dispatch({
+                    type: DELETE_ITEM,
+                    payload: data
+                });
+                dispatch(loaderOff());
+            }, 2000);
         } catch (err) {
             dispatch(errorOn('Ошибка API'));
             dispatch(loaderOff());

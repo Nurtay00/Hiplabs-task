@@ -1,4 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
+
 import {ChangeStatus} from "../../actions/actionFilter";
 import style from './filter.module.scss'
 import {RootState} from "../../interfaces/todoInterface";

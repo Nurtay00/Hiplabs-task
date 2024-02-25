@@ -1,18 +1,19 @@
 import {memo} from "react";
-import {useDispatch} from "react-redux";
 
 import {changeItem, deleteItem} from "../../actions/actionToDo";
 import style from './todoItem.module.scss'
 import {ToDoInteface} from "../../interfaces/todoInterface";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
 
-const ToDoItem = memo(({text, id, status}: ToDoInteface) => {
-    const dispatch = useDispatch()
+const ToDoItem = memo(({item}: { item: ToDoInteface }) => {
+    const dispatch = useAppDispatch()
+    const {status, text} = item
     const changeStatus = () => {
         const isStatus = status === 'active' ? 'done' : 'active'
-        dispatch(changeItem(text, isStatus, id))
+        dispatch(changeItem({...item, status: isStatus}))
     }
     const deleteTodo = () => {
-        dispatch(deleteItem(id))
+        dispatch(deleteItem(item))
     }
     return <div className={style.todoItemWrapper}><span className={`${style.todoItemText} ${style[status]}`}
                                                         onClick={() => changeStatus()}
